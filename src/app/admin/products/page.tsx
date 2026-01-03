@@ -34,7 +34,7 @@ function formatPrice(price: number) {
       style: "currency",
       currency: "INR",
     }).format(price);
-    return formatted.replace("₹", "₨");
+    return formatted.replace("₹", "₨ ");
 }
 
 export default async function AdminProductsPage() {
