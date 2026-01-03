@@ -41,8 +41,8 @@ export default async function CartPage() {
     const total = subtotal + shipping;
     
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold font-headline mb-8">Shopping Cart</h1>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h1 className="text-2xl sm:text-3xl font-bold font-headline mb-8">Shopping Cart</h1>
       {validCartItems.length === 0 ? (
         <div className="text-center py-20">
             <p className="text-muted-foreground text-xl">Your cart is empty.</p>
@@ -51,13 +51,13 @@ export default async function CartPage() {
             </Button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           <div className="lg:col-span-2">
             <Card>
               <CardContent className="p-0">
                 <div className="divide-y">
                   {validCartItems.map((item) => item && (
-                    <div key={item.id} className="flex items-center gap-4 p-4">
+                    <div key={item.id} className="flex flex-wrap sm:flex-nowrap items-center gap-4 p-4">
                       <Image
                         src={item.imageUrl}
                         alt={item.name}

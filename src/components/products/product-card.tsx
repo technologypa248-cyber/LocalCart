@@ -36,8 +36,8 @@ export function ProductCard({ product }: ProductCardProps) {
         </Link>
       </CardHeader>
       <CardContent className="flex-grow p-4">
-        <div className="mb-2 flex items-start justify-between">
-          <CardTitle className="text-lg font-headline leading-tight">
+        <div className="mb-2 flex items-start justify-between gap-2">
+          <CardTitle className="text-base md:text-lg font-headline leading-tight">
             <Link href={`/product/${product.slug}`} className="hover:text-primary">
               {product.name}
             </Link>
@@ -53,21 +53,21 @@ export function ProductCard({ product }: ProductCardProps) {
       <CardFooter className="flex items-center justify-between p-4 pt-0">
         <div>
            {product.discount > 0 ? (
-            <div className="flex items-baseline gap-2">
-              <span className="text-xl font-bold text-primary">
+            <div className="flex flex-wrap items-baseline gap-x-2">
+              <span className="text-lg md:text-xl font-bold text-primary">
                 {formatPrice(discountedPrice)}
               </span>
-              <span className="text-sm text-muted-foreground line-through">
+              <span className="text-sm md:text-base text-muted-foreground line-through">
                 {formatPrice(product.price)}
               </span>
             </div>
           ) : (
-            <span className="text-xl font-bold">
+            <span className="text-lg md:text-xl font-bold">
               {formatPrice(product.price)}
             </span>
           )}
         </div>
-        <Button size="icon" variant="outline" disabled={product.stock === 0}>
+        <Button size="icon" variant="outline" disabled={product.stock === 0} className="shrink-0">
             <ShoppingCart className="h-5 w-5" />
             <span className="sr-only">Add to cart</span>
         </Button>

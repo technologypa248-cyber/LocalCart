@@ -38,12 +38,12 @@ export default async function Home({
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
-        <aside className="lg:col-span-1">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+        <aside className="md:col-span-1">
           <FilterSidebar categories={categories} />
         </aside>
-        <main className="lg:col-span-3">
+        <main className="md:col-span-3">
           {products.length === 0 ? (
             <div className="flex h-full items-center justify-center text-muted-foreground">
               No products found.

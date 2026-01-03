@@ -35,7 +35,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
   const discountedPrice = product.price * (1 - product.discount / 100);
 
   return (
-    <div className="container mx-auto max-w-5xl px-4 py-12">
+    <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div className="overflow-hidden rounded-lg">
           <Image
@@ -53,21 +53,21 @@ export default async function ProductPage({ params }: { params: { slug: string }
               {product.discount}% OFF
             </Badge>
           )}
-          <h1 className="mt-2 font-headline text-3xl font-bold tracking-tight lg:text-4xl">
+          <h1 className="mt-2 font-headline text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
             {product.name}
           </h1>
           <div className="mt-4">
             {product.discount > 0 ? (
               <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold text-primary">
+                <span className="text-2xl sm:text-3xl font-bold text-primary">
                   {formatPrice(discountedPrice)}
                 </span>
-                <span className="text-xl text-muted-foreground line-through">
+                <span className="text-lg sm:text-xl text-muted-foreground line-through">
                   {formatPrice(product.price)}
                 </span>
               </div>
             ) : (
-              <span className="text-3xl font-bold">
+              <span className="text-2xl sm:text-3xl font-bold">
                 {formatPrice(product.price)}
               </span>
             )}
