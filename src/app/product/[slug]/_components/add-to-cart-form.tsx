@@ -27,7 +27,6 @@ export function AddToCartForm({ productId, stock }: AddToCartFormProps) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Here you would call a server action to add to cart
     console.log(`Adding ${quantity} of product ${productId} to cart.`);
     toast({
       title: "Added to cart!",
@@ -44,9 +43,9 @@ export function AddToCartForm({ productId, stock }: AddToCartFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-end gap-4">
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-stretch gap-4">
       <div className="grid gap-2">
-        <Label htmlFor="quantity" className="text-sm">
+        <Label htmlFor="quantity" className="text-sm sr-only">
           Quantity
         </Label>
         <div className="flex items-center">
@@ -54,7 +53,7 @@ export function AddToCartForm({ productId, stock }: AddToCartFormProps) {
             type="button"
             variant="outline"
             size="icon"
-            className="h-10 w-10 rounded-r-none"
+            className="h-11 w-11 rounded-r-none"
             onClick={() => handleQuantityChange(-1)}
             disabled={quantity <= 1}
           >
@@ -69,7 +68,7 @@ export function AddToCartForm({ productId, stock }: AddToCartFormProps) {
                 const value = Math.max(1, Math.min(stock, Number(e.target.value)))
                 setQuantity(value);
             }}
-            className="h-10 w-16 rounded-none border-x-0 text-center"
+            className="h-11 w-16 rounded-none border-x-0 text-center"
             min="1"
             max={stock}
           />
@@ -77,7 +76,7 @@ export function AddToCartForm({ productId, stock }: AddToCartFormProps) {
             type="button"
             variant="outline"
             size="icon"
-            className="h-10 w-10 rounded-l-none"
+            className="h-11 w-11 rounded-l-none"
             onClick={() => handleQuantityChange(1)}
             disabled={quantity >= stock}
           >

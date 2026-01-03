@@ -32,13 +32,9 @@ export function LoginForm() {
     });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        // Here you would typically call a server action
         console.log("Login values:", values);
         
-        // Mocking server action call
-        form.formState.isSubmitting = true;
         await new Promise(resolve => setTimeout(resolve, 1000));
-        form.formState.isSubmitting = false;
 
         if (values.email === "admin@localcart.com") {
              toast({ title: "Login Successful", description: "Redirecting to admin dashboard..." });

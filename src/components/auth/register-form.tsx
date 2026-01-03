@@ -34,13 +34,9 @@ export function RegisterForm() {
     });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        // Here you would typically call a server action
         console.log("Register values:", values);
         
-        // Mocking server action call
-        form.formState.isSubmitting = true;
         await new Promise(resolve => setTimeout(resolve, 1000));
-        form.formState.isSubmitting = false;
 
         toast({ title: "Account Created", description: "You can now log in." });
         // In a real app, you'd use router.push('/login') after the server action confirms success

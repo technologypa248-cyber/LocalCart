@@ -57,10 +57,8 @@ export function NewProductForm({ categories }: NewProductFormProps) {
         console.log("New product values:", values);
         
         // Mocking server action call
-        form.control.control.isSubmitting = true;
         await new Promise(resolve => setTimeout(resolve, 1500));
-        form.control.control.isSubmitting = false;
-
+        
         toast({ title: "Product Created", description: `Product "${values.name}" has been successfully created.` });
         // In a real app, you might redirect: router.push('/admin/products')
         form.reset();
@@ -131,7 +129,7 @@ export function NewProductForm({ categories }: NewProductFormProps) {
                             <CardHeader>
                                 <CardTitle>Pricing</CardTitle>
                             </CardHeader>
-                            <CardContent className="grid grid-cols-2 gap-4">
+                            <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                <FormField
                                     control={form.control}
                                     name="price"
