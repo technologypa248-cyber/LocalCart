@@ -1,19 +1,5 @@
 import 'server-only';
 import { Product, User, Category } from './definitions';
-import {
-  Smartphone,
-  Headphones,
-  Laptop,
-  Watch,
-  Camera,
-  Gamepad2,
-  Home,
-  Bike,
-  Speaker,
-  BookOpen,
-  Box,
-  Rocket
-} from 'lucide-react';
 
 const users: User[] = [
   {
@@ -54,12 +40,12 @@ const products: Product[] = [
 ];
 
 const categories: Category[] = [
-    { name: 'Electronics', slug: 'electronics', icon: Smartphone },
-    { name: 'Wearables', slug: 'wearables', icon: Watch },
-    { name: 'Gaming', slug: 'gaming', icon: Gamepad2 },
-    { name: 'Home', slug: 'home', icon: Home },
-    { name: 'Gadgets', slug: 'gadgets', icon: Rocket },
-    { name: 'Mobility', slug: 'mobility', icon: Bike },
+    { name: 'Electronics', slug: 'electronics', iconName: 'Smartphone' },
+    { name: 'Wearables', slug: 'wearables', iconName: 'Watch' },
+    { name: 'Gaming', slug: 'gaming', iconName: 'Gamepad2' },
+    { name: 'Home', slug: 'home', iconName: 'Home' },
+    { name: 'Gadgets', slug: 'gadgets', iconName: 'Rocket' },
+    { name: 'Mobility', slug: 'mobility', iconName: 'Bike' },
 ]
 
 // Simulate database latency

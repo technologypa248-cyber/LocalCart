@@ -13,6 +13,26 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import type { Category } from '@/lib/definitions';
 import { Button } from '../ui/button';
+import {
+  Smartphone,
+  Watch,
+  Gamepad2,
+  Home,
+  Rocket,
+  Bike,
+  Icon,
+} from 'lucide-react';
+import React from 'react';
+
+const iconMap: { [key: string]: React.ElementType } = {
+  Smartphone,
+  Watch,
+  Gamepad2,
+  Home,
+  Rocket,
+  Bike,
+};
+
 
 type FilterSidebarProps = {
   categories: Category[];
@@ -57,12 +77,16 @@ export function FilterSidebar({ categories }: FilterSidebarProps) {
               <RadioGroupItem value="all" id="cat-all" />
               <Label htmlFor="cat-all">All</Label>
             </div>
-            {categories.map((category) => (
-              <div key={category.slug} className="flex items-center space-x-2">
-                <RadioGroupItem value={category.slug} id={`cat-${category.slug}`} />
-                <Label htmlFor={`cat-${category.slug}`}>{category.name}</Label>
-              </div>
-            ))}
+            {categories.map((category) => {
+              const IconComponent = iconMap[category.iconName];
+              return (
+                <div key={category.slug} className="flex items-center space-x-2">
+                  <RadioGroupItem value={category.slug} id={`cat-${category.slug}`} />
+                  {IconComponent && <IconComponent className="h-4 w-4 text-muted-foreground" />}
+                  <Label htmlFor={`cat-${category.slug}`}>{category.name}</Label>
+                </div>
+              );
+            })}
           </RadioGroup>
         </div>
         

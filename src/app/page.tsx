@@ -29,7 +29,10 @@ export default async function Home({
   const categories = await getCategories();
 
   const createPageURL = (pageNumber: number | string) => {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams();
+    if (query) params.set('query', query);
+    if (category && category !== 'all') params.set('category', category);
+    if (sort && sort !== 'newest') params.set('sort', sort);
     params.set('page', pageNumber.toString());
     return `/?${params.toString()}`;
   };

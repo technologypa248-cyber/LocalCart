@@ -15,7 +15,7 @@ export type Product = {
 export type Category = {
   name: string;
   slug: string;
-  icon: React.ComponentType<{ className?: string }>;
+  iconName: string;
 };
 
 export type CartItem = {
