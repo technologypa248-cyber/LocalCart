@@ -18,10 +18,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 function formatPrice(price: number) {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-  }).format(price);
+    const formatted = new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+    }).format(price);
+    return formatted.replace("₹", "₨");
 }
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {

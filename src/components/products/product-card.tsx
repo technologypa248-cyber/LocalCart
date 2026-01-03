@@ -11,10 +11,11 @@ type ProductCardProps = {
 };
 
 function formatPrice(price: number) {
-  return new Intl.NumberFormat("en-IN", {
+  const formatted = new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
   }).format(price);
+  return formatted.replace("₹", "₨");
 }
 
 export function ProductCard({ product }: ProductCardProps) {
