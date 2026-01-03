@@ -137,7 +137,7 @@ export function NewProductForm({ categories }: NewProductFormProps) {
                                     name="price"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Price (USD)</FormLabel>
+                                            <FormLabel>Price (INR)</FormLabel>
                                             <FormControl>
                                                 <Input type="number" step="0.01" {...field} />
                                             </FormControl>

@@ -30,9 +30,9 @@ import { getProducts } from "@/lib/data";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 function formatPrice(price: number) {
-    return new Intl.NumberFormat("en-US", {
+    return new Intl.NumberFormat("en-IN", {
       style: "currency",
-      currency: "USD",
+      currency: "INR",
     }).format(price);
 }
 

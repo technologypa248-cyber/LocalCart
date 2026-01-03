@@ -18,9 +18,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 function formatPrice(price: number) {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("en-IN", {
     style: "currency",
-    currency: "USD",
+    currency: "INR",
   }).format(price);
 }
 

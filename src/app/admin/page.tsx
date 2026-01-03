@@ -11,7 +11,7 @@ export default function AdminDashboard() {
   const stats = [
     {
       title: "Total Revenue",
-      value: "$45,231.89",
+      value: "₹45,23,189",
       description: "+20.1% from last month",
       icon: DollarSign,
     },

@@ -14,9 +14,9 @@ const mockCartItems = [
 ];
 
 function formatPrice(price: number) {
-    return new Intl.NumberFormat("en-US", {
+    return new Intl.NumberFormat("en-IN", {
       style: "currency",
-      currency: "USD",
+      currency: "INR",
     }).format(price);
 }
 
@@ -37,7 +37,7 @@ export default async function CheckoutPage() {
         return acc + discountedPrice * item.quantity;
     }, 0);
 
-    const shipping = 5.00;
+    const shipping = 50.00;
     const total = subtotal + shipping;
 
   return (
