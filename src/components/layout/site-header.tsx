@@ -17,7 +17,7 @@ import {
 export default function SiteHeader() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const router = useRouter();
+  const { replace } = useRouter();
 
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
@@ -27,11 +27,12 @@ export default function SiteHeader() {
       params.delete('query');
     }
     params.set('page', '1');
-    router.replace(`${pathname}?${params.toString()}`);
+    replace(`/products?${params.toString()}`);
   }, 300);
 
   const navLinks = [
     { href: '/', label: 'Home' },
+    { href: '/products', label: 'Products' },
     { href: '/#categories', label: 'Categories' },
   ];
 
@@ -45,6 +46,17 @@ export default function SiteHeader() {
               LocalCart
             </span>
           </Link>
+          <nav className="flex items-center space-x-6 text-sm font-medium">
+             {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-foreground/60 transition-colors hover:text-foreground/80"
+                >
+                  {link.label}
+                </Link>
+              ))}
+          </nav>
         </div>
 
         <Sheet>
@@ -73,9 +85,9 @@ export default function SiteHeader() {
           </SheetContent>
         </Sheet>
         
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+        <div className="flex flex-1 items-center justify-end space-x-2">
           <div className="w-full flex-1 md:w-auto md:flex-none">
-            {pathname === '/' && (
+            {pathname === '/products' && (
               <div className="relative">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -88,7 +100,7 @@ export default function SiteHeader() {
               </div>
             )}
           </div>
-          <nav className="flex items-center space-x-2">
+          <nav className="flex items-center space-x-1">
             <Button variant="ghost" size="icon" asChild>
               <Link href="/cart">
                 <ShoppingCart className="h-5 w-5" />

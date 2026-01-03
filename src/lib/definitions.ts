@@ -1,35 +1,46 @@
-export type Product = {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  price: number;
-  discount: number; // Percentage
-  stock: number;
-  category: string;
-  imageUrl: string;
-  imageHint: string;
-  isVisible: boolean;
-};
+import type { Types } from 'mongoose';
 
 export type Category = {
+  _id: string;
   name: string;
   slug: string;
   iconName: string;
 };
 
+export type Product = {
+  _id: string;
+  name: string;
+  slug: string;
+  description: string;
+  price: number;
+  discount: number;
+  stock: number;
+  category: Category;
+  imageUrl: string;
+  imageHint: string;
+  isVisible: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type CartItem = {
-  productId: string;
+  product: Product;
   quantity: number;
 };
 
 export type Cart = {
+  _id: string;
   userId: string;
-  items: CartItem[];
+  items: {
+    productId: Types.ObjectId;
+    quantity: number;
+  }[];
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type Address = {
-  id: string;
+  _id?: string;
   street: string;
   city: string;
   state: string;
@@ -38,20 +49,29 @@ export type Address = {
 };
 
 export type User = {
-  id: string;
+  _id: string;
   name: string;
   email: string;
-  passwordHash: string;
+  password?: string;
   role: 'user' | 'admin';
   addresses: Address[];
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type Order = {
-  id: string;
-  userId: string;
-  items: (CartItem & { unitPrice: number })[];
+  _id: string;
+  userId: Types.ObjectId;
+  items: {
+    productId: Types.ObjectId;
+    name: string;
+    price: number;
+    quantity: number;
+    imageUrl: string;
+  }[];
   total: number;
   shippingAddress: Address;
   status: 'Pending' | 'Confirmed' | 'Shipped' | 'Delivered';
   createdAt: string;
+  updatedAt: string;
 };

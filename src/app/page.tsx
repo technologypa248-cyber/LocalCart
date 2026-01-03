@@ -1,99 +1,49 @@
-import { ProductGrid } from "@/components/products/product-grid";
-import { FilterSidebar } from "@/components/products/filter-sidebar";
-import { getProducts, getCategories } from "@/lib/data";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ProductGrid } from '@/components/products/product-grid';
+import { getProducts } from '@/lib/api/products';
+import Image from 'next/image';
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    category?: string;
-    sort?: string;
-    page?: string;
-  };
-}) {
-  const query = searchParams?.query || "";
-  const category = searchParams?.category || "all";
-  const sort = searchParams?.sort || "newest";
-  const currentPage = Number(searchParams?.page) || 1;
-  
-  const { products, totalPages } = await getProducts({ query, category, sort, page: currentPage });
-  const categories = await getCategories();
-
-  const createPageURL = (pageNumber: number | string) => {
-    const params = new URLSearchParams();
-    if (query) params.set('query', query);
-    if (category && category !== 'all') params.set('category', category);
-    if (sort && sort !== 'newest') params.set('sort', sort);
-    params.set('page', pageNumber.toString());
-    return `/?${params.toString()}`;
-  };
+export default async function Home() {
+  const { products } = await getProducts({ limit: 4, sort: 'newest' });
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-        <aside className="md:col-span-1">
-          <FilterSidebar categories={categories} />
-        </aside>
-        <main className="md:col-span-3">
-          {products.length === 0 ? (
-            <div className="flex h-full items-center justify-center text-muted-foreground">
-              No products found.
-            </div>
-          ) : (
-            <>
-              <ProductGrid products={products} />
-              {totalPages > 1 && (
-                <div className="mt-8">
-                  <Pagination>
-                    <PaginationContent>
-                      <PaginationItem>
-                        <PaginationPrevious
-                          href={createPageURL(currentPage - 1)}
-                          aria-disabled={currentPage <= 1}
-                          tabIndex={currentPage <= 1 ? -1 : undefined}
-                          className={
-                            currentPage <= 1 ? "pointer-events-none opacity-50" : undefined
-                          }
-                        />
-                      </PaginationItem>
-                      {[...Array(totalPages)].map((_, i) => (
-                        <PaginationItem key={i}>
-                          <PaginationLink
-                            href={createPageURL(i + 1)}
-                            isActive={currentPage === i + 1}
-                          >
-                            {i + 1}
-                          </PaginationLink>
-                        </PaginationItem>
-                      ))}
+    <div>
+      <section className="relative h-[60vh] w-full bg-gradient-to-r from-indigo-100 to-violet-100 flex items-center justify-center">
+        <div className="text-center z-10">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-headline tracking-tight text-gray-900">
+            Welcome to <span className="text-primary">LocalCart</span>
+          </h1>
+          <p className="mt-4 max-w-2xl mx-auto text-lg sm:text-xl text-gray-600">
+            Your one-stop shop for everything local and self-hosted.
+          </p>
+          <Button asChild size="lg" className="mt-8">
+            <Link href="/products">Shop Now</Link>
+          </Button>
+        </div>
+        <Image
+            src="https://picsum.photos/seed/hero/1800/800"
+            alt="Hero image"
+            fill
+            className="object-cover"
+            priority
+          />
+        <div className="absolute inset-0 bg-white/30"></div>
+      </section>
 
-                      <PaginationItem>
-                        <PaginationNext
-                          href={createPageURL(currentPage + 1)}
-                           aria-disabled={currentPage >= totalPages}
-                          tabIndex={currentPage >= totalPages ? -1 : undefined}
-                          className={
-                            currentPage >= totalPages ? "pointer-events-none opacity-50" : undefined
-                          }
-                        />
-                      </PaginationItem>
-                    </PaginationContent>
-                  </Pagination>
-                </div>
-              )}
-            </>
-          )}
-        </main>
-      </div>
+      <section className="py-16 sm:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold font-headline text-center mb-12">
+            New Arrivals
+          </h2>
+          <ProductGrid products={products} />
+          <div className="text-center mt-12">
+            <Button asChild variant="outline">
+              <Link href="/products">View All Products</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -24,7 +24,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="flex h-full flex-col overflow-hidden rounded-lg shadow-sm transition-shadow hover:shadow-lg">
       <CardHeader className="p-0">
-        <Link href={`/product/${product.slug}`} className="block overflow-hidden">
+        <Link href={`/products/${product.slug}`} className="block overflow-hidden">
           <Image
             src={product.imageUrl}
             alt={product.name}
@@ -38,7 +38,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <CardContent className="flex-grow p-4">
         <div className="mb-2 flex items-start justify-between gap-2">
           <CardTitle className="text-base md:text-lg font-headline leading-tight">
-            <Link href={`/product/${product.slug}`} className="hover:text-primary">
+            <Link href={`/products/${product.slug}`} className="hover:text-primary">
               {product.name}
             </Link>
           </CardTitle>
@@ -48,7 +48,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </Badge>
           )}
         </div>
-         <p className="text-sm text-muted-foreground">{product.category}</p>
+         <p className="text-sm text-muted-foreground">{product.category.name}</p>
       </CardContent>
       <CardFooter className="flex items-center justify-between p-4 pt-0">
         <div>
