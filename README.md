@@ -57,3 +57,9 @@ An admin user is automatically created during the database seeding process. You 
 
 *   **Email:** `admin@eshop.com`
 *   **Password:** `admin123`
+
+### Troubleshooting
+
+**`ECONNREFUSED 127.0.0.1:27017` Error**
+
+This error means the application could not connect to the MongoDB database. To fix this, ensure that your local MongoDB server is running **before** you start the application with `npm run dev`.
