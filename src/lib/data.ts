@@ -40,10 +40,10 @@ const products: Product[] = [
 ];
 
 const categories: Category[] = [
+    { name: 'Home', slug: 'home', iconName: 'Home' },
     { name: 'Electronics', slug: 'electronics', iconName: 'Smartphone' },
     { name: 'Wearables', slug: 'wearables', iconName: 'Watch' },
     { name: 'Gaming', slug: 'gaming', iconName: 'Gamepad2' },
-    { name: 'Home', slug: 'home', iconName: 'Home' },
     { name: 'Gadgets', slug: 'gadgets', iconName: 'Rocket' },
     { name: 'Mobility', slug: 'mobility', iconName: 'Bike' },
 ]
